@@ -39,9 +39,9 @@ Using the ERD above:
 ### Update the Server-side Code
 
 - [π] Install `pg` and setup your `pool` to connect to the database.
-- [π] Update the `\artist` GET route to get data from the database. Sort the data by birthdate, youngest to oldest.
+- [π] Update the `\artist` GET route to get data from the database. [π]Sort the data by birthdate, youngest to oldest.
 - [π] Update the `\artist` POST route to store data in the database. 
-- [π] Update the `\song` GET route to get data from the database. Sort the data by title.
+- [π] Update the `\song` GET route to get data from the database. [π]Sort the data by title.
 - [π] Update the `\song` POST route to store data in the database.  
 
 > NOTE: You should only need to modify server side code if you've named things correctly. You can continue to the existing client code for testing.

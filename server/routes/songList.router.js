@@ -9,7 +9,7 @@ const pool = new pg.Pool({
 });
 
 songRouter.get('/', (req, res) => {
-    const queryText = 'SELECT * FROM songlist'
+    const queryText = 'SELECT * FROM songlist ORDER BY title ASC';
 
     pool.query(queryText)
         .then((songs) => {

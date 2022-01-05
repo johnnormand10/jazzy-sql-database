@@ -10,7 +10,7 @@ const pool = new pg.Pool({
 
 artistRouter.get('/', (req, res) => {
 
-    const queryText = 'SELECT * FROM artistlist';
+    const queryText = 'SELECT * FROM artistlist ORDER BY UPPER(birthdate) DESC';
 
     pool.query(queryText)
         .then((dbRes) =>{
