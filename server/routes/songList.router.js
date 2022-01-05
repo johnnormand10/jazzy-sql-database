@@ -9,7 +9,7 @@ const pool = new pg.Pool({
 });
 
 songRouter.get('/', (req, res) => {
-    const queryText = 'SELECT * FROM songList'
+    const queryText = 'SELECT * FROM songlist'
 
     pool.query(queryText)
         .then((songs) => {
@@ -25,7 +25,7 @@ songRouter.post('/', (req, res) => {
     console.log('req.body is', req.body);
     
     let queryText = `
-        INSERT INTO "songList"
+        INSERT INTO "songlist"
             ("title", "length", "released")
         VALUES
             ($1, $2, $3)

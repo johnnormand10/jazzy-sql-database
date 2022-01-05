@@ -10,7 +10,7 @@ const pool = new pg.Pool({
 
 artistRouter.get('/', (req, res) => {
 
-    const queryText = 'SELECT * FROM artistList';
+    const queryText = 'SELECT * FROM artistlist';
 
     pool.query(queryText)
         .then((dbRes) =>{
@@ -30,7 +30,7 @@ artistRouter.post('/', (req, res) =>{
     console.log('req.body is ', req.body);
 
     let queryText = `
-        INSERT INTO "artistList"
+        INSERT INTO "artistlist"
             ("name", "birthdate")
         VALUES
             ($1, $2)

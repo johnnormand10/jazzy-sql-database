@@ -12,19 +12,11 @@ app.use(express.static('server/public'));
 let artistRouter = require('./routes/artistList.router');
 app.use('/artist', artistRouter);
 
+let songRouter = require('./routes/songList.router');
+app.use('/song', songRouter);
 
 app.listen(PORT, () => {
     console.log('listening on port', PORT)
-});
-
-app.get('/song', (req, res) => {
-    console.log(`In /songs GET`);
-    res.send(songList);
-});
-
-app.post('/song', (req, res) => {
-    songList.push(req.body);
-    res.sendStatus(201);
 });
 
 
