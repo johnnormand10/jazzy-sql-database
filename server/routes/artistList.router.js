@@ -2,7 +2,11 @@ const pg = require('pg');
 const express = require('express');
 const artistRouter = express.Router();
 
-const pool = require('../modules/pool');
+const pool = new pg.Pool({
+    database: 'jazzy_sql',
+    host: 'localhost',
+    port: 5432
+});
 
 artistRouter.get('/', (req, res) => {
 
