@@ -1,0 +1,50 @@
+const pg = require('pg'); 
+const express = require('express');
+const songRouter = express.Router();
+
+const pool = new pg.Pool({
+    database: 'jazzy_sql',
+    host: 'localhost',
+    port: 5432
+});
+
+songRouter.get('/', (req, res) => {
+    const queryText = 'SELECT * FROM songlist'
+
+    pool.query(queryText)
+        .then((songs) => {
+            res.send(songs.rows)
+        })
+        .catch((err) => {
+            console.log('GET /song failed', err);
+            res.sendStatus(500);
+        });
+});
+
+songRouter.post('/', (req, res) => {
+    console.log('req.body is', req.body);
+    
+    let queryText = `
+        INSERT INTO "songlist"
+            ("title", "length", "released")
+        VALUES
+            ($1, $2, $3)
+    `;
+
+    let queryParams = [
+        req.body.title,
+        req.body.length,
+        req.body.released
+    ];
+
+    pool.query(queryText, queryParams)
+        .then((song) => {
+            res.sendStatus(201);
+        })
+        .catch((err) => {
+            console.log('POST failed', err);
+            res.sendStatus(500);
+        })
+})
+
+module.exports = songRouter;
