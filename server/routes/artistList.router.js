@@ -1,16 +1,14 @@
-const pg = require('pg'); 
 const express = require('express');
+const pool = require('../modules/pool');
+
+
 const artistRouter = express.Router();
 
-const pool = new pg.Pool({
-    database: 'jazzy_sql',
-    host: 'localhost',
-    port: 5432
-});
+
 
 artistRouter.get('/', (req, res) => {
 
-    const queryText = 'SELECT * FROM artistlist ORDER BY UPPER(birthdate) DESC';
+    const queryText = 'SELECT * FROM artistlist ORDER BY birthdate DESC';
 
     pool.query(queryText)
         .then((dbRes) =>{
