@@ -1,3 +1,4 @@
+const pg = require('pg');
 const express = require('express');
 const bodyParser = require('body-parser');
 
@@ -30,6 +31,12 @@ const artistList = [
         birthdate: '10-18-1984'
     },
 ]
+
+const pool = new pg.Pool({
+    database: 'artistList',
+    host: 'localhost',
+    port: 5432
+});
 const songList = [
     {
         title: 'Take Five',
